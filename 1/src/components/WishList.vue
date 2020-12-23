@@ -10,7 +10,7 @@
                 <img :src="`../images/${gift.image}`"  />
 
                 <p>{{gift.votes}}</p>
-                <button>Wish for this</button>
+                <button @click="submitVote(gift.id)">Wish for this</button>
             </li>
         </ul>
         <p>{{gifts}}</p>
@@ -19,6 +19,8 @@
 
 <script>
 import gifts from '../../../data.json';
+
+//use serverless functions to load voting functions
 
 
 export default {
@@ -34,9 +36,15 @@ export default {
                 return label.includes(search);
                 });
             }
-    }
+    },
+    methods: {
+        submitVote: function(id) {
+            console.log({id})
+            //send a fetch to the serverless function to update votes
+        },
+    },
     
-}
+};
 </script>
 
 <style lang="scss" module>
